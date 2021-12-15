@@ -47,6 +47,30 @@ class StationTest {
         stationService.registerStation("양재역");
         Assertions.assertThatThrownBy(() -> stationService.registerStation("양재역"))
             .isInstanceOf(IllegalArgumentException.class);
-
     }
+
+    /**
+     * 역 삭제
+     * **/
+    @Test
+    @DisplayName("정상적으로 역을 삭제한다.")
+    void 역_삭제_정상() {
+        StationService stationService = new StationService();
+        stationService.registerStation("양재역");
+        stationService.removeStation("양재역");
+    }
+
+    @Test
+    @DisplayName("삭제하려는 역이 노선에 등록되어 있으면 예외를 반환한다.")
+    void 노선에_등록된_역_삭제_예외() {
+        fail(); // TODO: 아직 할 수 없음. 노선 만든 뒤 다시 작성.
+    }
+
+    @Test
+    @DisplayName("삭제하려는 역이 존재하지 않는 역일 때 예외를 반환한다.")
+    void 역_존재하지_않음_예외() {
+        StationService stationService = new StationService();
+        stationService.removeStation("양재역");
+    }
+
 }
