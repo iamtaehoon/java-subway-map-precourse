@@ -14,8 +14,26 @@ public class InputView {
             + "Q. 종료");
     }
 
-    public static String selectMainFunction() {
+    public static String selectFunction() {
         System.out.println("\n## 원하는 기능을 선택하세요.");
+        return scanner.nextLine();
+    }
+
+    public static void showStationService() {
+        System.out.println("\n## 역 관리 화면\n"
+            + "1. 역 등록\n"
+            + "2. 역 삭제\n"
+            + "3. 역 조회\n"
+            + "B. 돌아가기");
+    }
+
+    public static String enterRegisterStation() {
+        System.out.println("\n## 등록할 역 이름을 입력하세요.");
+        return scanner.nextLine();
+    }
+
+    public static String enterRemoveStation() {
+        System.out.println("\n## 삭제할 역 이름을 입력하세요.");
         return scanner.nextLine();
     }
 }
