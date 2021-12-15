@@ -1,5 +1,7 @@
 package subway.repository;
 
+import static subway.Message.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,4 +36,10 @@ public class LineRepository {
         return lines.stream().anyMatch(line -> line.hasThisStation(stationName)); //하나라도 있으면 true를 반환.
     }
 
+    public static Line getLine(String name) {
+        return lines.stream()
+            .filter(line -> line.getName().equals(name))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_OBJECT_ERROR));
+    }
 }
