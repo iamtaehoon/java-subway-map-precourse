@@ -1,8 +1,11 @@
 package subway.service;
 
+import java.util.List;
+
 import subway.domain.Station;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
+import subway.view.OutputView;
 
 public class StationService {
 
@@ -17,5 +20,9 @@ public class StationService {
 
     public void removeStation(String name) {
         StationRepository.deleteStation(name);
+    }
+
+    public void showAllStation() {
+        OutputView.showAllStation(StationRepository.stations());
     }
 }
