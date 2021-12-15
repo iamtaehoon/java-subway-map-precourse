@@ -11,7 +11,7 @@ public class SubwayController {
     private StationService stationService;
     private LineService lineService;
     private SectionService sectionService;
-    private MainCode mainCode;
+    private MainCode mainCode = MainCode.STATION;
 
     public SubwayController(StationService stationService, LineService lineService, SectionService sectionService) {
         this.stationService = stationService;
@@ -20,9 +20,11 @@ public class SubwayController {
     }
 
     public void run() { // try Catch로 계속 반복 가능하게 종료 코드 나올때까지.
-        InputView.showMainFunction();
-        MainCode mainCode = selectMainFunction();
-        executeFunction(mainCode); // mainCode enum 안에 함수도 넣어보자.
+        while (mainCode != MainCode.QUIT) {
+            InputView.showMainFunction();
+            mainCode = selectMainFunction();
+            executeFunction(mainCode); // mainCode enum 안에 함수도 넣어보자.
+        }
     }
 
     private void executeFunction(MainCode mainCode) { // 상단 메서드 하나 만들어서 반복이 가능하도록.
@@ -34,9 +36,6 @@ public class SubwayController {
         //
         // }
         // if (mainCode == MainCode.SECTION) {
-        //
-        // }
-        // if (mainCode == MainCode.QUIT) {
         //
         // }
     }
