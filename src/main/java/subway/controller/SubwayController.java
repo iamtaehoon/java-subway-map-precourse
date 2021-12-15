@@ -2,10 +2,13 @@ package subway.controller;
 
 import subway.code.MainCode;
 import subway.code.StationCode;
+import subway.repository.LineRepository;
+import subway.repository.StationRepository;
 import subway.service.LineService;
 import subway.service.SectionService;
 import subway.service.StationService;
 import subway.view.InputView;
+import subway.view.OutputView;
 
 public class SubwayController {
     private StationService stationService;
@@ -35,6 +38,8 @@ public class SubwayController {
         // if (mainCode == MainCode.LINE) {
         //
         // }
+        if (mainCode == MainCode.PRINT) {
+        }
         // if (mainCode == MainCode.SECTION) {
         //
         // }

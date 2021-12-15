@@ -16,8 +16,8 @@ public class Line {
         if (name.length() < MIN_LINE_NAME_LENGTH) {
             throw new IllegalArgumentException(LACK_OF_NAME_LENGTH_ERROR);
         }
-        section.add(0, new Station(firstStationName));
-        section.add(1, new Station(lastStationName));
+        section.add(0, firstStationName);
+        section.add(1, lastStationName);
         this.name = name;
     }
 
@@ -32,7 +32,7 @@ public class Line {
     }
 
     public void addStation(int index, String stationName) {
-        section.add(index, new Station(stationName));
+        section.add(index, stationName);
     }
 
     public void deleteStation(String name) {

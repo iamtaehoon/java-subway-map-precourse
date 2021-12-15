@@ -17,4 +17,5 @@ public class OutputView {
             System.out.println("[INFO] " + line);
         }
     }
+    
 }

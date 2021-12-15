@@ -8,15 +8,15 @@ import java.util.LinkedList;
 public class Section {
     private LinkedList<Station> section = new LinkedList<>();
 
-    public void add(int index,Station station) {
-        if (section.contains(station)) {
+    public void add(int index,String stationName) {
+        if (hasThisStation(stationName)) {
             throw new IllegalArgumentException(DUPLICATE_OBJECT_ERROR);
         }
         if ((index < 0) || (section.size() < (index))) {
             throw new IllegalArgumentException(SECTION_OUT_RANGE_ERROR);
         }
 
-        section.add(index,station);
+        section.add(index,new Station(stationName));
     }
 
     public boolean hasThisStation(String stationName) {
