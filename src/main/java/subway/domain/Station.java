@@ -1,6 +1,7 @@
 package subway.domain;
 
 import static subway.Constant.*;
+import static subway.Message.*;
 
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ public class Station {
 
     public Station(String name) {
         if (name.length() < MIN_STATION_NAME_LENGTH) {
-            throw new IllegalArgumentException("2글자 이상의 이름을 입력해주세요.");
+            throw new IllegalArgumentException(LACK_OF_NAME_LENGTH_ERROR);
         }
         this.name = name;
     }

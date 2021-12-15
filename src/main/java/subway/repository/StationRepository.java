@@ -1,5 +1,7 @@
 package subway.repository;
 
+import static subway.Message.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,14 +18,14 @@ public class StationRepository {
 
     public static void addStation(Station station) {
         if (stations.contains(station)) {
-            throw new IllegalArgumentException("이미 존재하는 이름입니다.");
+            throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
         }
         stations.add(station);
     }
 
     public static boolean deleteStation(String name) {
         if (!stations.contains(new Station(name))) {
-            throw new IllegalArgumentException("해당 객체는 존재하지 않습니다.");
+            throw new IllegalArgumentException(NOT_EXIST_OBJECT_ERROR);
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
