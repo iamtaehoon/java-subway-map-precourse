@@ -22,6 +22,9 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if (!stations.contains(new Station(name))) {
+            throw new IllegalArgumentException("해당 객체는 존재하지 않습니다.");
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 

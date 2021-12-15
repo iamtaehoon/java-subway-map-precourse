@@ -14,4 +14,8 @@ public class StationService {
     public void clearAllStation() {
         StationRepository.clear();
     }
+
+    public void removeStation(String name) {
+        StationRepository.deleteStation(name);
+    }
 }

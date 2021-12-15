@@ -70,7 +70,8 @@ class StationTest {
     @DisplayName("삭제하려는 역이 존재하지 않는 역일 때 예외를 반환한다.")
     void 역_존재하지_않음_예외() {
         StationService stationService = new StationService();
-        stationService.removeStation("양재역");
+        Assertions.assertThatThrownBy(() -> stationService.removeStation("양재역"))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
