@@ -9,7 +9,6 @@ import subway.service.StationService;
 
 public class Application {
     public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
         StationService stationService = new StationService();
         LineService lineService = new LineService();
         SectionService sectionService = new SectionService();

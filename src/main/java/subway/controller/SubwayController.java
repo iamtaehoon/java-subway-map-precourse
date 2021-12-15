@@ -3,6 +3,7 @@ package subway.controller;
 import subway.service.LineService;
 import subway.service.SectionService;
 import subway.service.StationService;
+import subway.view.InputView;
 
 public class SubwayController {
     private StationService stationService;
@@ -16,6 +17,11 @@ public class SubwayController {
     }
 
     public void run() {
-        System.out.println("hello");
+        selectMainFunction();
+    }
+
+    private void selectMainFunction() {
+        InputView.showMainFunction();
+        InputView.selectMainFunction();
     }
 }
