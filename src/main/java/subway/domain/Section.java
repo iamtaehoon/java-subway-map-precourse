@@ -13,4 +13,8 @@ public class Section {
         }
         section.add(station);
     }
+
+    public boolean hasThisStation(String stationName) {
+        return section.contains(new Station(stationName));
+    }
 }

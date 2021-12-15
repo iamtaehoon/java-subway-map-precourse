@@ -29,4 +29,9 @@ public class LineRepository {
     public static boolean haveThisLine(String name) {
         return lines.stream().anyMatch(line -> line.getName().equals(name));
     }
+
+    public static boolean haveThisStation(String stationName) {
+        return lines.stream().anyMatch(line -> line.hasThisStation(stationName)); //하나라도 있으면 true를 반환.
+    }
+
 }

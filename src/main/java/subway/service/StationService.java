@@ -1,5 +1,7 @@
 package subway.service;
 
+import static subway.Message.*;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,27 +15,27 @@ import subway.view.OutputView;
 public class StationService {
 
     public void run(StationCode stationCode) {
-        if (stationCode == StationCode.REGISTER) {
-            registerStation(InputView.enterRegisterStation());
+        try {
+            if (stationCode == StationCode.REGISTER) {
+                registerStation(InputView.enterRegisterStation());
+            }
+            if (stationCode == StationCode.REMOVE) {
+                removeStation(InputView.enterRemoveStation());
+            }
+            if (stationCode == StationCode.LOOK_UP) {
+                showAllStation();
+            }
+            // if (stationCode == StationCode.GO_BACK) {
+            //
+            // }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            run(stationCode);
         }
-        if (stationCode == StationCode.REMOVE) {
-            removeStation(InputView.enterRemoveStation());
-        }
-        if (stationCode == StationCode.LOOK_UP) {
-            showAllStation();
-        }
-        // if (stationCode == StationCode.GO_BACK) {
-        //
-        // }
     }
 
     public void registerStation(String name) {
-        try {
-            StationRepository.addStation(name);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            registerStation(InputView.enterRegisterStation());
-        }
+        StationRepository.addStation(name);
     }
 
     public void clearAllStation() {
@@ -41,12 +43,12 @@ public class StationService {
     }
 
     public void removeStation(String name) {
-        try {
-            StationRepository.deleteStation(name);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            removeStation(InputView.enterRemoveStation());
+        // 모든 노선들을 찾는다. -> 각 노선에서 이 이름을 가진 station이 있는지 찾는다
+        if (LineRepository.haveThisStation(name)) {
+            throw new IllegalArgumentException(STATION_ON_LINE_CANT_DELETE_ERROR);
         }
+        // 있으면 오류를 반환
+        StationRepository.deleteStation(name);
     }
 
     public void showAllStation() {

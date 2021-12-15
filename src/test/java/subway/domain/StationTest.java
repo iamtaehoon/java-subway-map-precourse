@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import subway.repository.StationRepository;
+import subway.service.LineService;
 import subway.service.StationService;
 
 class StationTest {
@@ -63,7 +64,31 @@ class StationTest {
     @Test
     @DisplayName("삭제하려는 역이 노선에 등록되어 있으면 예외를 반환한다.")
     void 노선에_등록된_역_삭제_예외() {
-        fail(); // TODO: 아직 할 수 없음. 노선 만든 뒤 다시 작성.
+        StationService stationService = new StationService();
+        stationService.registerStation("양재역");
+        stationService.registerStation("서울역");
+        stationService.registerStation("분당역");
+
+        LineService lineService = new LineService();
+        lineService.registerLine("1호선","서울역","양재역");
+
+        Assertions.assertThatThrownBy(() -> stationService.removeStation("서울역"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("삭제하려는 역이 노선에 등록되어 있지 않으면 정상 로직을 반환한다.")
+    void 노선에_등록안된_역_삭제_정상() {
+        StationService stationService = new StationService();
+        stationService.registerStation("양재역");
+        stationService.registerStation("서울역");
+        stationService.registerStation("분당역");
+
+        LineService lineService = new LineService();
+        lineService.registerLine("1호선","서울역","양재역");
+
+        stationService.removeStation("분당역");
+
     }
 
     @Test

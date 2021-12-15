@@ -26,4 +26,8 @@ public class Line {
     public String getName() {
         return name;
     }
+
+    public boolean hasThisStation(String stationName) {
+        return section.hasThisStation(stationName);
+    }
 }
