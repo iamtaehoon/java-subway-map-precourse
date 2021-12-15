@@ -29,7 +29,7 @@ public class StationService {
 
     public void registerStation(String name) {
         try {
-            StationRepository.addStation(new Station(name));
+            StationRepository.addStation(name);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             registerStation(InputView.enterRegisterStation());

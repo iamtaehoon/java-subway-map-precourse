@@ -25,4 +25,8 @@ public class LineRepository {
     public static void clear() {
         lines.clear();
     }
+
+    public static boolean haveThisLine(String name) {
+        return lines.stream().anyMatch(line -> line.getName().equals(name));
+    }
 }

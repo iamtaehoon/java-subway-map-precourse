@@ -16,15 +16,15 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
-        if (stations.contains(station)) {
+    public static void addStation(String name) {
+        if (haveStation(name)) {
             throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
         }
-        stations.add(station);
+        stations.add(new Station(name));
     }
 
     public static boolean deleteStation(String name) {
-        if (!stations.contains(new Station(name))) {
+        if (!haveStation(name)) {
             throw new IllegalArgumentException(NOT_EXIST_OBJECT_ERROR);
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
@@ -32,5 +32,9 @@ public class StationRepository {
 
     public static void clear() {
         stations.clear();
+    }
+
+    public static boolean haveStation(String stationName) {
+        return stations.contains(new Station(stationName));
     }
 }

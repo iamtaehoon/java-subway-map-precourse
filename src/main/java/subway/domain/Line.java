@@ -3,17 +3,22 @@ package subway.domain;
 import static subway.Constant.*;
 import static subway.Message.*;
 
+import java.util.LinkedList;
 import java.util.Objects;
+
+import subway.repository.StationRepository;
 
 public class Line {
     private String name;
-    private Station firstStation;
-    private Station lastStation;
+    private LinkedList<Station> stations = new LinkedList<>();
 
-    public Line(String name) {
+
+    public Line(String name, String firstStationName, String lastStationName) {
         if (name.length() < MIN_LINE_NAME_LENGTH) {
             throw new IllegalArgumentException(LACK_OF_NAME_LENGTH_ERROR);
         }
+        stations.add(new Station(firstStationName));
+        stations.add(new Station(lastStationName));
         this.name = name;
     }
 

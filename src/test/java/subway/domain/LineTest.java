@@ -1,9 +1,7 @@
 package subway.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,11 +20,11 @@ class LineTest {
         lineService.clearAllLine();
         StationService stationService = new StationService();
         stationService.clearAllStation();
-        StationRepository.addStation(new Station("잠실역"));
-        StationRepository.addStation(new Station("판교역"));
-        StationRepository.addStation(new Station("나루역"));
-        StationRepository.addStation(new Station("서울대공원역"));
-        StationRepository.addStation(new Station("광주역"));
+        StationRepository.addStation("잠실역");
+        StationRepository.addStation("판교역");
+        StationRepository.addStation("나루역");
+        StationRepository.addStation("서울대공원역");
+        StationRepository.addStation("광주역");
     }
 
     @Test
@@ -49,7 +47,7 @@ class LineTest {
     void 노선_이름_중복_예외() {
         LineService lineService = new LineService();
         lineService.registerLine("1호선", "잠실역", "판교역");
-        assertThatThrownBy(() -> lineService.hasThisLine("1호선"))
+        assertThatThrownBy(() -> lineService.haveThisLine("1호선"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -57,7 +55,9 @@ class LineTest {
     @DisplayName("존재하지 않는 역을 입력할 때 예외를 만든다.")
     void 역_존재_안함_예외() {
         LineService lineService = new LineService();
-        lineService.registerLine("1호선", "태훈역", "판교역");
+        assertThatThrownBy(() -> lineService.registerLine("1호선", "태훈역", "판교역"))
+            .isInstanceOf(IllegalArgumentException.class);
+
     }
 
     /**
