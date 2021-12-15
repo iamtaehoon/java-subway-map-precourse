@@ -20,6 +20,8 @@ class LineTest {
     void init() {
         LineService lineService = new LineService();
         lineService.clearAllLine();
+        StationService stationService = new StationService();
+        stationService.clearAllStation();
         StationRepository.addStation(new Station("잠실역"));
         StationRepository.addStation(new Station("판교역"));
         StationRepository.addStation(new Station("나루역"));
@@ -47,7 +49,7 @@ class LineTest {
     void 노선_이름_중복_예외() {
         LineService lineService = new LineService();
         lineService.registerLine("1호선", "잠실역", "판교역");
-        assertThatThrownBy(() -> lineService.registerLine("1호선", "나루역", "서울대공원역"))
+        assertThatThrownBy(() -> lineService.hasThisLine("1호선"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
