@@ -14,8 +14,12 @@ import subway.service.StationService;
 
 class StationTest {
 
-    // @BeforeEach
-    // 트랜잭션?
+    @BeforeEach
+    void init() {
+        StationService stationService = new StationService();
+        stationService.clearAllStation();
+    }
+
 
     @ParameterizedTest()
     @ValueSource(strings = {"양재역", "서울역", "서울대공원역", "분당역", "마포역"})

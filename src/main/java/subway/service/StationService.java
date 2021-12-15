@@ -10,4 +10,8 @@ public class StationService {
     public void registerStation(String name) {
         StationRepository.addStation(new Station(name));
     }
+
+    public void clearAllStation() {
+        StationRepository.clear();
+    }
 }
