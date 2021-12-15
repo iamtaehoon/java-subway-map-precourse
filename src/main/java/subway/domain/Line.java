@@ -10,15 +10,14 @@ import subway.repository.StationRepository;
 
 public class Line {
     private String name;
-    private LinkedList<Station> stations = new LinkedList<>();
-
+    private Section section = new Section();
 
     public Line(String name, String firstStationName, String lastStationName) {
         if (name.length() < MIN_LINE_NAME_LENGTH) {
             throw new IllegalArgumentException(LACK_OF_NAME_LENGTH_ERROR);
         }
-        stations.add(new Station(firstStationName));
-        stations.add(new Station(lastStationName));
+        section.add(new Station(firstStationName));
+        section.add(new Station(lastStationName));
         this.name = name;
     }
 

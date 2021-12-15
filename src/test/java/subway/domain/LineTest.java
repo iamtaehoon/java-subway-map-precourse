@@ -79,7 +79,15 @@ class LineTest {
         lineService.registerLine("1호선", "잠실역", "판교역");
         assertThatThrownBy(() -> lineService.removeLine("10호선"))
             .isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @Test // Section 테스트여야 하는 거 같음...
+    @DisplayName("시작역과 끝역이 같으면 예외를 반환한다.")
+    void 시작역_끝역_중복() {
+        LineService lineService = new LineService();
+
+        assertThatThrownBy(() -> lineService.registerLine("1호선", "잠실역", "잠실역"))
+            .isInstanceOf(IllegalArgumentException.class);
 
     }
 }
