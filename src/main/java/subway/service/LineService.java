@@ -6,6 +6,7 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
+import subway.view.OutputView;
 
 public class LineService {
 
@@ -31,5 +32,9 @@ public class LineService {
             throw new IllegalArgumentException(NOT_EXIST_OBJECT_ERROR);
         }
         LineRepository.deleteLineByName(name);
+    }
+
+    public void showAllLine() {
+        OutputView.showAllLine(LineRepository.lines());
     }
 }
