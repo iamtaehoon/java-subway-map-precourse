@@ -10,21 +10,21 @@ import subway.view.OutputView;
 
 public class LineService {
 
-    public void clearAllLine() {
+    public static void clearAllLine() {
         LineRepository.clear();
     }
 
     public void registerLine(String lineName, String firstStationName, String lastStationName) {
-        if (!(StationRepository.haveStation(firstStationName) & StationRepository.haveStation(lastStationName))) {
-            throw new IllegalArgumentException("존재하지 않는 역이 들어갔습니다");
-        }
-        LineRepository.addLine(new Line(lineName, firstStationName, lastStationName));
-    }
-
-    public void haveThisLine(String name) {
-        if (LineRepository.haveThisLine(name)) {
+        if (LineRepository.haveThisLine(lineName)) {
             throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
         }
+        if (firstStationName.equals(lastStationName)) {
+            throw new IllegalArgumentException(DUPLICATE_OBJECT_ERROR);
+        }
+        if (!(StationRepository.haveStation(firstStationName) & StationRepository.haveStation(lastStationName))) {
+            throw new IllegalArgumentException(NOT_EXIST_OBJECT_ERROR);
+        }
+        LineRepository.addLine(new Line(lineName, firstStationName, lastStationName));
     }
 
     public void removeLine(String name) {

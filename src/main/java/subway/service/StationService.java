@@ -41,7 +41,7 @@ public class StationService {
         StationRepository.addStation(name);
     }
 
-    public void clearAllStation() {
+    public static void clearAllStation() {
         StationRepository.clear();
     }
 

@@ -17,8 +17,8 @@ class StationTest {
 
     @BeforeEach
     void init() {
-        StationService stationService = new StationService();
-        stationService.clearAllStation();
+        StationService.clearAllStation();
+        LineService.clearAllLine();
     }
 
 
