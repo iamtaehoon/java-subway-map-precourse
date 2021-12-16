@@ -47,7 +47,7 @@ class LineTest {
     void 노선_이름_중복_예외() {
         LineService lineService = new LineService();
         lineService.registerLine("1호선", "잠실역", "판교역");
-        assertThatThrownBy(() -> lineService.haveThisLine("1호선"))
+        assertThatThrownBy(() -> lineService.registerLine("1호선","나루역","광주역"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
