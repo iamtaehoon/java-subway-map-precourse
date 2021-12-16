@@ -35,6 +35,9 @@ public class StationService {
     }
 
     public void registerStation(String name) {
+        if (StationRepository.haveStation(name)) {
+            throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
+        }
         StationRepository.addStation(name);
     }
 
@@ -43,11 +46,12 @@ public class StationService {
     }
 
     public void removeStation(String name) {
-        // 모든 노선들을 찾는다. -> 각 노선에서 이 이름을 가진 station이 있는지 찾는다
+        if (!StationRepository.haveStation(name)) {
+            throw new IllegalArgumentException(NOT_EXIST_OBJECT_ERROR);
+        }
         if (LineRepository.haveThisStation(name)) {
             throw new IllegalArgumentException(STATION_ON_LINE_CANT_DELETE_ERROR);
         }
-        // 있으면 오류를 반환
         StationRepository.deleteStation(name);
     }
 

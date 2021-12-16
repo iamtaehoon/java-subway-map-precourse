@@ -17,16 +17,10 @@ public class StationRepository {
     }
 
     public static void addStation(String name) {
-        if (haveStation(name)) {
-            throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
-        }
         stations.add(new Station(name));
     }
 
     public static boolean deleteStation(String name) {
-        if (!haveStation(name)) {
-            throw new IllegalArgumentException(NOT_EXIST_OBJECT_ERROR);
-        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
