@@ -34,6 +34,12 @@ public class LineService {
         LineRepository.deleteLineByName(name);
     }
 
+    public void checkHaveSameName(String name) {
+        if (LineRepository.haveThisLine(name)) {
+            throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
+        }
+    }
+
     public void showAllLine() {
         OutputView.showAllLine(LineRepository.lines());
     }
